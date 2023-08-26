@@ -3,3 +3,8 @@
 /.vscode
 *.swp
 /.cache
+.idea
+cmake-build-debug
+cmake-build-debug-remote-host
+.DS_Store
+.clion.source.upload.marker
