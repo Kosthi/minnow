@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <span>
+#include <sstream>
 #include <string>
 
 using namespace std;
@@ -10,7 +11,25 @@ using namespace std;
 void get_URL( const string& host, const string& path )
 {
   cerr << "Function called: get_URL(" << host << ", " << path << ")\n";
-  cerr << "Warning: get_URL() has not been implemented yet.\n";
+
+  ostringstream oss;
+  oss << "GET " << path << " HTTP/1.1\r\n"
+      << "Host: " << host << "\r\n"
+      << "Connection: close\r\n\r\n";
+
+  auto addr = Address(host, "http");
+  auto sc = TCPSocket();
+  sc.connect(addr);
+  sc.write(oss.str());
+  sc.shutdown(SHUT_WR);
+
+  string buffer;
+  while (!sc.eof()) {
+    sc.read(buffer);
+    cout << buffer;
+  }
+
+  sc.close();
 }
 
 int main( int argc, char* argv[] )
