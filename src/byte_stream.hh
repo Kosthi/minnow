@@ -15,12 +15,13 @@ protected:
   // Please add any additional state to the ByteStream here, and not to the Writer and Reader interfaces.
   uint64_t remaining_capacity_;
 
-  uint64_t nread_{0};
-  uint64_t nwrite_{0};
+  uint64_t bytes_pushed_{0};
+  uint64_t bytes_popped_{0};
+  uint64_t bytes_buffered_{0};
   bool is_closed_{false};
-  bool is_errored_{false};
-  std::queue<std::string> buffer_{};
-  std::queue<std::string_view> buffer_view_{};
+  bool has_error_{false};
+  std::deque<std::string> buffer_{};
+  std::deque<std::string_view> buffer_view_{};
 
 public:
   explicit ByteStream( uint64_t capacity );
