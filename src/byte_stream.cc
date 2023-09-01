@@ -8,15 +8,15 @@ ByteStream::ByteStream( uint64_t capacity ) : capacity_( capacity ), remaining_c
 
 void Writer::push( string data )
 {
-  if (remaining_capacity_ == 0 || data.empty()) {
+  if ( remaining_capacity_ == 0 || data.empty() ) {
     return;
   }
-  size_t const len = std::min(data.size(), remaining_capacity_);
-  if (len < data.size()) {
-    data = data.substr(0, len);
+  auto len = min( data.size(), remaining_capacity_ );
+  if ( len < data.size() ) {
+    data = data.substr( 0, len );
   }
-  buffer_.emplace_back(std::move(data));
-  buffer_view_.emplace_back(buffer_.back().c_str(), len);
+  buffer_.emplace_back( move( data ) );
+  buffer_view_.emplace_back( buffer_.back().c_str(), len );
   bytes_pushed_ += len;
   bytes_buffered_ += len;
   remaining_capacity_ -= len;
@@ -49,7 +49,7 @@ uint64_t Writer::bytes_pushed() const
 
 string_view Reader::peek() const
 {
-  if (buffer_view_.empty()) {
+  if ( buffer_view_.empty() ) {
     return {};
   }
   return buffer_view_.front();
@@ -67,9 +67,9 @@ bool Reader::has_error() const
 
 void Reader::pop( uint64_t len )
 {
-  len = std::min(len, bytes_buffered_);
-  while ( len > 0) {
-    size_t sz = buffer_view_.front().size();
+  len = min( len, bytes_buffered_ );
+  while ( len > 0 ) {
+    auto sz = buffer_view_.front().size();
     if ( len >= sz ) {
       buffer_view_.pop_front();
     } else {
