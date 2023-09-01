@@ -2,9 +2,9 @@
 
 #include "byte_stream.hh"
 
+#include <list>
 #include <string>
 #include <unordered_map>
-#include <list>
 
 class Reassembler
 {
@@ -35,8 +35,8 @@ public:
   uint64_t bytes_pending() const;
 
 private:
-  uint64_t first_unassembled_index_{0};
-  uint64_t buffer_size_{0};
-  bool is_last_substring_{ false };
-  std::list<std::pair<uint64_t, std::string>> bytes_pending_list{};
+  uint64_t first_unassembled_index_ { 0 };
+  uint64_t buffer_size_ { 0 };
+  bool is_last_substring_ { false };
+  std::list<std::pair<uint64_t, std::string>> bytes_pending_list {};
 };
