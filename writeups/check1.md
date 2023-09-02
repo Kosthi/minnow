@@ -1,24 +1,24 @@
 Checkpoint 1 Writeup
 ====================
 
-My name: [your name here]
+My name: [Koschei]
 
-My SUNet ID: [your sunetid here]
+My SUNet ID: [210405317]
 
 I collaborated with: [list sunetids here]
 
 I would like to thank/reward these classmates for their help: [list sunetids here]
 
-This lab took me about [n] hours to do. I [did/did not] attend the lab session.
+This lab took me about [13 hrs 39 mins] hours to do. I [did not] attend the lab session.
 
 Program Structure and Design of the Reassembler:
-[]
+[a pair index to string, and a list for inserting and deleting]
 
 Implementation Challenges:
-[]
+[Sorting and character reorganization in buffer]
 
 Remaining Bugs:
-[]
+[Maybe not]
 
 - Optional: I had unexpected difficulty with: [describe]
 
